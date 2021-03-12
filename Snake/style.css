@@ -1,0 +1,135 @@
+body {
+  background-color:#624980;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 2.5vw;
+  color:#ffffff;
+}
+
+
+#gameZone {
+  margin: 5px;
+  padding: 20px;
+  max-width: min-content;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.info {
+  display: block;
+  margin: 5px;
+  float:left;
+}
+
+#score {
+  color: #17ffe8;
+  float:left;
+  margin: 5px;
+  margin-left: 20px;
+  display: block;
+}
+
+#chequered {
+  clear:both;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:#4c3963;
+  width: 510px;
+  height: 510px;
+  background-size: 30px 30px;
+  background-image:
+    linear-gradient(to right, #7b5ca1 1px, transparent 1px),
+    linear-gradient(to bottom, #7b5ca1 1px, transparent 1px);
+  position:relative;
+}
+
+#circle {
+  height: 25px;
+  width: 25px;
+  background-color: #ed5c5c;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+}
+
+.head {
+    margin: 1px;
+    background:#17ffe8;
+    width: 28px;
+    height: 28px;
+    top: 240px;
+    left: 240px;
+    position: absolute;
+  }
+
+  #apple {
+    position: absolute;
+    top: 10px; /* moving up-down */
+    width: 50px; /* right top part of an apple */
+    left: 20px; /* moving right-left*/
+  }
+  
+  #appleLeaf {
+    position: absolute;
+    top: 5px; /* moving leaf up-down */
+    left: 22px; /* moving leaf right-left */
+    transform: rotate(-30deg); /* leaf rotation */
+  }
+  
+  #appleLeafTop {
+    background-color: #4bb856;
+    width: 12px; /* width of the upper part of the leaf */
+    height: 4px; /* height of the upper part of the leaf */
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+  }
+  
+  #appleLeafBottom {
+    background-color: lightgreen;
+    width: 12px;
+    height: 4px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+  
+  #appleStem {
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-top: 10px solid #7d5040;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    top: 5px;
+    left: 16px;
+    transform: rotate(-17deg);
+  }
+  
+  #appleTopLeft {
+    background-color: #ed5c5c;
+    position: absolute;
+    top: 10px;
+    width: 24px;
+    height: 25px;
+    border-radius: 50%;
+  }
+  
+  #appleTopRight {
+    background-color: #ed5c5c;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 24px;
+    height: 25px;
+    border-radius: 50%;
+  }
+  
+  #appleBottom {
+    background-color: #ed5c5c;
+    width: 40px;
+    height: 24px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    top: 20px;
+    position: absolute;
+  }
