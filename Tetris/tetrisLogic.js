@@ -32,17 +32,21 @@ const PIECES = [
     [zShape, "red"],
     [jShape, "orange"],
     [sShape, "yellow"],
-    [oShape, "lightgreen"]
-]    
+    [oShape, "lightgreen"],
+    [lShape, "brown"],
+    [tShape, "white"],
+    [iShape, "black"]
+]
 
 let p = new Piece(PIECES[0][0], PIECES[0][1])
 
 function Piece(shape, color) {
     this.shape = shape;
     this.color = color;
-    this.active = this.shape[0];
+    this.number = 0;
+    this.active = this.shape[this.number];
     this.x = 3;
-    this.y = -1;
+    this.y = -2;
 }
 
 Piece.prototype.draw = function () {
@@ -55,38 +59,91 @@ Piece.prototype.draw = function () {
     }
 }
 
-p.draw();
 
 Piece.prototype.goDown = function () {
-    this.y++;
-    this.draw();
-    if (this.y >= 17){
-        this.y = 17;
+    if (this.collision(0, 1, this.active)) {
+        this.y++;
+        this.draw();
     }
 }
 
 Piece.prototype.goRight = function () {
-    drawBoard();
-    this.x++;
-    this.draw();
-    if (this.x > 6){
-        this.x = 6;
+    if (this.collision(1, 0, this.active)) {
+        this.x++;
+        this.draw();
     }
 }
 
 Piece.prototype.goLeft = function () {
+    if (this.collision(-1, 0, this.active)) {
+        this.x--;
+        this.draw();
+    }
+    else {
+
+    }
+}
+
+Piece.prototype.rotation = function () {
+    let rotated =  this.shape[(this.number + 1) % this.shape.length];
+
+    if (this.collision(0, 0, rotated)) {
+        this.number = (this.number + 1) % this.shape.length;
+        this.active = this.shape[this.number];
+        this.draw();
+    }
+    else {
+
+    }
+}
+
+Piece.prototype.collision = function (x, y, Piece) {
+    for (r = 0; r < Piece.length; r++) {
+        for (c = 0; c < Piece.length; c++) {
+            if (!Piece[r][c]) {
+                // continue;
+                r++;
+                c++;
+            }
+            let newX = this.x + c + x;
+            let newY = this.y + c; + y;
+
+            if (newX < 0 || newX >= COLS || newY >= ROW) {
+                return false;
+            }
+            if(newY < 0){
+                continue;
+            }
+            if (board[newY][newX] != EMPTY) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+document.addEventListener("keydown", CONTROL);
+function CONTROL(event) {
     drawBoard();
-    this.x--;
-    this.draw();
-    if (this.x < 1 ){
-        this.x = 1;
+    if (event.keyCode == 37) {
+        p.goLeft();
+        startTime = Date.now();
+    } else if (event.keyCode == 38) {
+        p.rotation();
+        startTime = Date.now();
+    } else if (event.keyCode == 39) {
+        p.goRight();
+        startTime = Date.now();
+    } else if (event.keyCode == 40) {
+        p.goDown();
     }
 }
 
 let startTime = Date.now();
-function fall(){
+function fall() {
+    p.draw();
     let time = Date.now();
-    if((time-startTime) > 100){
+    if ((time - startTime) > 100) {
         drawBoard();
         p.goDown();
         startTime = Date.now();
