@@ -3,7 +3,7 @@ const ctx = cvs.getContext("2d");
 const ROWS = 20;
 const COLS = 10;
 const SS = 20; // square size
-const EMPTY = "#4f4f4f" // backgound color to fill empty places of the ground
+const EMPTY = "#4f4f4f"; // backgound color to fill empty places of the ground
 let board = [];
 
 function drawSquare(x, y, color) {
@@ -38,7 +38,12 @@ const PIECES = [
     [iShape, "black"]
 ]
 
-let p = new Piece(PIECES[0][0], PIECES[0][1])
+function generate () {
+    let randN = Math.floor(Math.random() * PIECES.length);
+    return new Piece(PIECES[randN][0], PIECES[randN][1]);
+}
+
+let p = generate();
 
 function Piece(shape, color) {
     this.shape = shape;
@@ -49,7 +54,7 @@ function Piece(shape, color) {
     this.y = -2;
 }
 
-Piece.prototype.draw = function () {
+Piece.prototype.draw = function (color) {
     for (r = 0; r < this.active.length; r++) {
         for (c = 0; c < this.active.length; c++) {
             if (this.active[r][c]) {
@@ -61,70 +66,90 @@ Piece.prototype.draw = function () {
 
 
 Piece.prototype.goDown = function () {
-    if (this.collision(0, 1, this.active)) {
+    if (!this.isCollision(0, 1, this.active)) {
+        drawBoard();
         this.y++;
         this.draw();
+    }
+    else {
+        p = generate();
     }
 }
 
 Piece.prototype.goRight = function () {
-    if (this.collision(1, 0, this.active)) {
+    if (!this.isCollision(1, 0, this.active)) {
+        drawBoard();
         this.x++;
         this.draw();
     }
 }
 
 Piece.prototype.goLeft = function () {
-    if (this.collision(-1, 0, this.active)) {
+    if (!this.isCollision(-1, 0, this.active)) {
+        drawBoard();
         this.x--;
         this.draw();
-    }
-    else {
-
     }
 }
 
 Piece.prototype.rotation = function () {
     let rotated =  this.shape[(this.number + 1) % this.shape.length];
-
-    if (this.collision(0, 0, rotated)) {
+    let move = 0;
+    if (this.isCollision(0, 0, rotated)) {
+        if (this.x > COLS/2) {
+           if (!this.isCollision(-1, 0, rotated)) {
+                drawBoard();
+                this.x -= 1;
+                this.number = (this.number + 1) % this.shape.length;
+                this.active = this.shape[this.number];
+                this.draw();
+           }
+        }
+        else {
+            if (!this.isCollision(1, 0, rotated)) {
+                drawBoard();
+                this.x += 1;
+                this.number = (this.number + 1) % this.shape.length;
+                this.active = this.shape[this.number];
+                this.draw();
+           }
+        }
+    }
+    if (!this.isCollision(move, 0, rotated)) {
+        drawBoard();
         this.number = (this.number + 1) % this.shape.length;
         this.active = this.shape[this.number];
         this.draw();
     }
-    else {
-
-    }
 }
 
-Piece.prototype.collision = function (x, y, Piece) {
+Piece.prototype.isCollision = function(x, y, Piece) {
     for (r = 0; r < Piece.length; r++) {
         for (c = 0; c < Piece.length; c++) {
             if (!Piece[r][c]) {
-                // continue;
-                r++;
-                c++;
+                continue; 
             }
             let newX = this.x + c + x;
-            let newY = this.y + c; + y;
+            let newY = this.y + r + y;
 
-            if (newX < 0 || newX >= COLS || newY >= ROW) {
-                return false;
+            if (newX < 0 || newX >= COLS || newY >= ROWS) {
+                return true;
             }
-            if(newY < 0){
+            if(newY < 0) {
                 continue;
             }
             if (board[newY][newX] != EMPTY) {
-                return false;
+                return true;
             }
         }
     }
-    return true;
+    return false;
 }
 
 document.addEventListener("keydown", CONTROL);
 function CONTROL(event) {
     drawBoard();
+    p.generate();
     if (event.keyCode == 37) {
         p.goLeft();
         startTime = Date.now();
@@ -143,7 +168,7 @@ let startTime = Date.now();
 function fall() {
     p.draw();
     let time = Date.now();
-    if ((time - startTime) > 100) {
+    if ((time - startTime) > 300) {
         drawBoard();
         p.goDown();
         startTime = Date.now();
