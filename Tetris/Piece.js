@@ -30,6 +30,7 @@ Piece.prototype.draw = function (color) {
 // movements
 Piece.prototype.goDown = function () {
     if (!this.isCollision(0,1,this.active)){
+        drawBoard();
         this.y++;
         this.draw();
     } 
@@ -41,7 +42,7 @@ Piece.prototype.goDown = function () {
 
 Piece.prototype.goRight = function () {
     if (!this.isCollision(1, 0, this.active)) {
-        this.draw(EMPTY);
+        drawBoard();
         this.x++;
         this.draw(this.color);
     }
@@ -49,7 +50,7 @@ Piece.prototype.goRight = function () {
 
 Piece.prototype.goLeft = function () {
     if (!this.isCollision(-1, 0, this.active)) {
-        this.draw(EMPTY);
+        drawBoard();
         this.x--;
         this.draw();
     }
@@ -71,7 +72,7 @@ Piece.prototype.rotation = function () {
         }
         else {
             if (!this.isCollision(1, 0, rotated)) {
-                this.draw(EMPTY);
+                drawBoard();
                 this.x += 1;
                 this.number = (this.number + 1) % this.shape.length;
                 this.active = this.shape[this.number];
@@ -80,14 +81,14 @@ Piece.prototype.rotation = function () {
         }
     }
     if (!this.isCollision(move, 0, rotated)) {
-        this.draw(EMPTY);
+        drawBoard();
         this.number = (this.number + 1) % this.shape.length;
         this.active = this.shape[this.number];
         this.draw();
     }
 }
 
-Piece.prototype.isCollision = function(x,y,piece){
+Piece.prototype.isCollision = function(x, y, piece){
     for( r = 0; r < piece.length; r++){
         for(c = 0; c < piece.length; c++){
             if(!piece[r][c]){

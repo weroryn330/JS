@@ -39,13 +39,13 @@ function generate () {
     return new Piece(PIECES[randN][0], PIECES[randN][1]);
 }
 
-drawBoard();
 var p = generate();
 
 // Main function
 function main() {
     var startTime = Date.now();
     let gameOver = false;
+    drawBoard();
 
     // Key listener
     document.addEventListener("keydown", CONTROL);
@@ -67,7 +67,6 @@ function main() {
     function fall() {
         var time = Date.now();
         if ((time - startTime) > 300) {
-            p.draw(EMPTY);
             p.goDown();
             startTime = Date.now();
         }
