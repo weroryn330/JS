@@ -7,6 +7,7 @@ const PIECES = [
     [tShape, "white"],
     [iShape, "black"]
 ]
+
 function Piece(shape, color) {
     this.shape = shape;
     this.color = color;
@@ -14,7 +15,6 @@ function Piece(shape, color) {
     this.active = this.shape[this.number];
     this.x = 3;
     this.y = -2;
-    this.locked = false;
 }
 
 Piece.prototype.draw = function (color) {
@@ -27,14 +27,14 @@ Piece.prototype.draw = function (color) {
     }
 }
 
+// movements
 Piece.prototype.goDown = function () {
-    if (!this.isCollision(0, 1, this.active)) {
-        this.draw(EMPTY);
+    if (!this.isCollision(0,1,this.active)){
         this.y++;
         this.draw();
-    }
+    } 
     else {
-        this.locked = true;
+        this.lock();
         p = generate();
     }
 }
@@ -55,6 +55,7 @@ Piece.prototype.goLeft = function () {
     }
 }
 
+// shape rotation
 Piece.prototype.rotation = function () {
     let rotated =  this.shape[(this.number + 1) % this.shape.length];
     let move = 0;
@@ -86,25 +87,63 @@ Piece.prototype.rotation = function () {
     }
 }
 
-Piece.prototype.isCollision = function(x, y, Piece) {
-    for (r = 0; r < Piece.length; r++) {
-        for (c = 0; c < Piece.length; c++) {
-            if (!Piece[r][c]) {
-                continue; 
+Piece.prototype.isCollision = function(x,y,piece){
+    for( r = 0; r < piece.length; r++){
+        for(c = 0; c < piece.length; c++){
+            if(!piece[r][c]){
+                continue;
             }
             let newX = this.x + c + x;
             let newY = this.y + r + y;
-
-            if (newX < 0 || newX >= COLS || newY >= ROWS) {
+            
+            if(newX < 0 || newX >= COLS || newY >= ROWS){
                 return true;
             }
-            if(newY < 0) {
+            if(newY < 0){
                 continue;
             }
-            if (board[newY][newX] != EMPTY) {
+            if( board[newY][newX] != EMPTY){
                 return true;
             }
         }
     }
     return false;
+}
+
+let score = 0;
+
+Piece.prototype.lock = function(){
+    for( r = 0; r < this.active.length; r++){
+        for(c = 0; c < this.active.length; c++){
+            if( !this.active[r][c]){
+                continue;
+            }
+            if(this.y + r < 0){
+                alert("Game Over");
+                gameOver = true;
+                break;
+            }
+            board[this.y+r][this.x+c] = this.color;
+        }
+    }
+    for(r = 0; r < ROWS; r++){
+        let isRowFull = true;
+        for( c = 0; c < COLS; c++){
+            isRowFull = isRowFull && (board[r][c] != EMPTY);
+        }
+        if(isRowFull){
+            for( y = r; y > 1; y--){
+                for( c = 0; c < COLS; c++){
+                    board[y][c] = board[y-1][c];
+                }
+            }
+            for( c = 0; c < COLS; c++){
+                board[0][c] = EMPTY;
+            }
+            score += COLS;
+        }
+    }
+    drawBoard();
+    
+    scoreElement.innerHTML = score;
 }
