@@ -3,17 +3,18 @@ const ctx = cvs.getContext("2d");
 const ROWS = 20;
 const COLS = 10;
 const SS = 20; // square size
-const EMPTY = "#4f4f4f"; // backgound color to fill empty places of the ground
+const EMPTY =  "#3f3f3f"; // backgound color to fill empty places of the ground
 const scoreElement = document.getElementById("score");
 let board = [];
 var gameOver = false;
+let score = 0;
 
 function drawSquare(x, y, color) {
     // drawing a single square
     ctx.fillStyle = color;                  // color of the square
     ctx.fillRect(x * SS, y * SS, SS, SS);
 
-    ctx.strokeStyle = "black";              // frame of the square
+    ctx.strokeStyle = "#4f4f4f";              // frame of the square
     ctx.strokeRect(x * SS, y * SS, SS, SS);
 }
 

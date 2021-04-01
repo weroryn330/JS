@@ -1,11 +1,11 @@
 const PIECES = [
-    [zShape, "red"],
-    [jShape, "orange"],
-    [sShape, "yellow"],
-    [oShape, "lightgreen"],
-    [lShape, "brown"],
-    [tShape, "white"],
-    [iShape, "black"]
+    [zShape, "#ff5252"],
+    [jShape, "#fcc290"],
+    [sShape, "#90fcdc"],
+    [oShape, "#90d4fc"],
+    [lShape, "#dc58fc"],
+    [tShape, "#fc90f1"],
+    [iShape, "#fcfc90"]
 ]
 
 function Piece(shape, color) {
@@ -111,8 +111,6 @@ Piece.prototype.isCollision = function(x, y, piece){
     return false;
 }
 
-let score = 0;
-
 Piece.prototype.lock = function(){
     for( r = 0; r < this.active.length; r++){
         for(c = 0; c < this.active.length; c++){
@@ -127,18 +125,18 @@ Piece.prototype.lock = function(){
             board[this.y+r][this.x+c] = this.color;
         }
     }
-    for(r = 0; r < ROWS; r++){
+    for(r = 0; r < ROWS; r++) {
         let isRowFull = true;
-        for( c = 0; c < COLS; c++){
+        for( c = 0; c < COLS; c++) {
             isRowFull = isRowFull && (board[r][c] != EMPTY);
         }
         if(isRowFull){
-            for( y = r; y > 1; y--){
-                for( c = 0; c < COLS; c++){
+            for( y = r; y > 1; y--) {
+                for( c = 0; c < COLS; c++) {
                     board[y][c] = board[y-1][c];
                 }
             }
-            for( c = 0; c < COLS; c++){
+            for( c = 0; c < COLS; c++) {
                 board[0][c] = EMPTY;
             }
             score += COLS;

@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="eng">
-    <head>
-        <meta charset="UTF-8">
-        <title> [JS] Tetris Game</title>
-        <script type="text/javascript" src="shapes.js"></script>
-    </head>
-    <body style = "background-color: #4f4f4f;">
-        <canvas id = "tetrisGround" width = "200" height ="400" style="border: 2px solid aqua; margin: 50px;">
+
+<head>
+    <meta charset="UTF-8">
+    <title> [JS] Tetris Game</title>
+    <script type="text/javascript" src="shapes.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-color: #4f4f4f;">
+    <div id="container">
+        <canvas id="tetrisGround" width="200" height="400">
         </canvas>
-        <div style="font-size: 40px">
-            Score : <div id="score" style="color: aqua;">0</div>
+        <div style= "float:left">
+            Score: <div id="score" style="color: aqua;"></div>
         </div>
+        <div style = "clear:both"></div>
         <script src="Piece.js"></script>
         <script src="tetrisLogic.js"></script>
         <script src="shapes.js"></script>
-        
-    </body>
+    </div>
+</body>
+
 </html>
