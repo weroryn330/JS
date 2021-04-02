@@ -12,7 +12,6 @@ body {
   max-width: min-content;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
 }
 
 .info {
@@ -29,19 +28,17 @@ body {
   display: block;
 }
 
-#chequered {
+.canvas {
   clear:both;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
   background-color:#4c3963;
-  width: 510px;
-  height: 510px;
   background-size: 30px 30px;
   background-image:
     linear-gradient(to right, #7b5ca1 1px, transparent 1px),
     linear-gradient(to bottom, #7b5ca1 1px, transparent 1px);
-  position:relative;
+  z-index: -1;
 }
 
 #circle {
