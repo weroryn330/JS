@@ -2,6 +2,7 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 
@@ -10,7 +11,76 @@ body {
     font-size: 2.5vw;
     color:#ffffff;
     background-color: #4f4f4f;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    min-height: fit-content;
+}
+
+/*square check button - invisible*/
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    visibility: hidden;
+    display:none;
+}
+
+/*mode slide-button*/
+.check {
+    position:relative;
+    display: block;
+    width: 40px;
+    height: 20px;
+    background: #ffecc7;
+    cursor: pointer;
+    border-radius: 20px;
+    /*overflow: hidden;*/
+    transition: ease-in 0.5s;
+}
+
+/*light background color pourying*/
+input[type="checkbox"]:checked ~ .check {
+    background: #4f4f4f;
+    box-shadow: 0 0 0 3000px #ffecc7;
+    z-index: -1;
+}
+
+/*white dot on black button*/
+.check:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: #ffecc7;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+
+input[type="checkbox"]:checked ~ .check:before { 
+    transform: translateX(20px);
+    z-index: 1;
+}
+
+
+.check:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: #4f4f4f;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transition: 0.5s;
+    transform: translateX(0px);
+    z-index: 1;
+}
+
+input[type="checkbox"]:checked ~ .check:after { 
+    transform: translateX(20px);
+    z-index: -1;
 }
 
 #tetrisGround {
@@ -21,7 +91,8 @@ body {
 }
 
 #container {
-    margin: 5px;
+    text-align: center;
+    margin: 2px;
     padding: 20px;
     max-width: 70%;
     margin-left: auto;
@@ -57,7 +128,7 @@ li:nth-child(2) {
 #scoreContainer {
     font-weight: 600;
     font-size: 30px;
-    color: rgba(50, 50, 50);
+    color: rgba(40, 40, 40);
     text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.2);
 }
 
