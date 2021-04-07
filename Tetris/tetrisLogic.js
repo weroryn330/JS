@@ -14,7 +14,7 @@ function drawSquare(x, y, color) {
     ctx.fillStyle = color;                  // color of the square
     ctx.fillRect(x * SS, y * SS, SS, SS);
 
-    ctx.strokeStyle = "#4f4f4f";              // frame of the square
+    ctx.strokeStyle = "#5f5f5f";              // frame of the square
     ctx.strokeRect(x * SS, y * SS, SS, SS);
 }
 
@@ -25,6 +25,7 @@ for (r = 0; r < ROWS; r++) {
         board[r][c] = EMPTY;
     }
 }
+score = 0;
 
 function drawBoard(){
     for( r = 0; r < ROWS; r++){
