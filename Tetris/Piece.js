@@ -1,11 +1,11 @@
 const PIECES = [
-    [zShape, "#ff5252"],
-    [jShape, "#fcc290"],
-    [sShape, "#90fcdc"],
-    [oShape, "#90d4fc"],
-    [lShape, "#dc58fc"],
-    [tShape, "#fc90f1"],
-    [iShape, "#fcfc90"]
+    [zShape, "#ab2605"],
+    [jShape, "#6ce085"],
+    [sShape, "#8a85ff"],
+    [oShape, "#08a82b"],
+    [lShape, "#0dbfbf"],
+    [tShape, "#e89e15"],
+    [iShape, "#f7d788"]
 ]
 
 function Piece(shape, color) {

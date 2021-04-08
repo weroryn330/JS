@@ -1,8 +1,9 @@
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #2f2f2f;
 }
 
 
@@ -16,30 +17,45 @@ body {
     min-height: fit-content;
 }
 
-/*square check button - invisible*/
+.labelik {
+  display:block;
+  width: 40px;
+  height: 20px;
+  border-radius: 20px;
+  position: relative;
+  top: 20px;
+  z-index: 1;
+}
+
+/*main button*/
+.check {
+  position:relative;
+  display: block;
+  width: 40px;
+  height: 20px;
+  background: #c0c0c0;
+  cursor: pointer;
+  border-radius: 20px;
+  /*overflow: hidden;*/
+  transition: ease-in 0.5s;
+}
+
+/*square check button  invisible*/
 input[type="checkbox"] {
-    -webkit-appearance: none;
-    visibility: hidden;
-    display:none;
+  -webkit-appearance: none;
+  visibility: hidden;
+  display:none;
 }
 
 /*mode slide-button*/
-.check {
-    position:relative;
-    display: block;
-    width: 40px;
-    height: 20px;
-    background: #ffecc7;
-    cursor: pointer;
-    border-radius: 20px;
-    /*overflow: hidden;*/
-    transition: ease-in 0.5s;
+input[type="checkbox"]:checked ~ * {
+  filter:invert();
 }
 
 /*light background color pourying*/
 input[type="checkbox"]:checked ~ .check {
-    background: #4f4f4f;
-    box-shadow: 0 0 0 3000px #ffecc7;
+    background: #c0c0c0;
+    box-shadow: 0 0 0 3000px #5f5f5f;
     z-index: -1;
 }
 
@@ -49,7 +65,7 @@ input[type="checkbox"]:checked ~ .check {
     position: absolute;
     top: 2px;
     left: 2px;
-    background: #ffecc7;
+    background: #5f5f5f;
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -69,7 +85,7 @@ input[type="checkbox"]:checked ~ .check:before {
     position: absolute;
     top: 2px;
     left: 2px;
-    background: #4f4f4f;
+    background: #5f5f5f;
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -104,13 +120,14 @@ ul {
 }
 
 li {
-    color:#17ffe8;
+    color:#00ffdd;
     display: inline-block;
     font-size: 40px;
     font-weight: 600;
     letter-spacing: 3px;
-    text-shadow: -1px 0 3px black, 0 1px 3px black, 0 0 25px #ffffff, 0 0 10px #17ffe8;
+    text-shadow: -1px 0 3px black, 0 1px 3px black, 0 0 25px #ffffff, 0 0 10px #00ffdd;
 }
+
 
 li:nth-child(2) {
     transform: rotate(15deg) translateY(4px);
@@ -118,17 +135,16 @@ li:nth-child(2) {
 }
 
 #score {
-    color: #17ffe8;
+    color: #00ffdd;
     margin: 2px;
     margin-left: 10px;
     display: inline-block;
-    text-shadow: -1px 0 3px black, 0 1px 3px black, 0 0 25px #ffffff, 0 0 10px #17ffe8;
+    text-shadow: -1px 0 3px black, 0 1px 3px black, 0 0 25px #ffffff, 0 0 10px #00ffdd;
 }
 
 #scoreContainer {
     font-weight: 600;
     font-size: 30px;
-    color: rgba(40, 40, 40);
     text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.2);
 }
 

@@ -9,12 +9,11 @@
 </head>
 
 <body>
-    
-    <div id="container">    
-        <label>
-            <input type="checkbox">
-            <span class = "check"> </span>
-        </label>    
+    <div id="container">
+        <input type="checkbox" id="cBox">
+        <label class="labelik" for="cBox"></label>
+        <span class="check"></span>
+
         <ul>
             <li>T</li>
             <li>E</li>
@@ -25,7 +24,7 @@
         </ul>
         <canvas id="tetrisGround" width="200" height="400">
         </canvas>
-        <div id="scoreContainer" >
+        <div id="scoreContainer">
             Score: <div id="score" style="color: aqua;">0</div>
         </div>
         <script src="Piece.js"></script>
