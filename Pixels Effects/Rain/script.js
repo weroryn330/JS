@@ -1,7 +1,3 @@
-const rainImage = new Image();
-
-rainImage.src = "photo.jpg";
-
 rainImage.addEventListener('load', function () {
     const rainCanvas = document.getElementById('canvasRain');
     const ctx = rainCanvas.getContext('2d');
