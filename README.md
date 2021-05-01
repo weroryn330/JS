@@ -6,7 +6,8 @@ Projects made to improve my Web Development skills.
 ## Pixels effects
 #### Rain effect 
 ![rain1](https://user-images.githubusercontent.com/43828905/115701308-f27a6a80-a367-11eb-93ca-31b38ed026e2.png)
-
+#### Scanned rain effect
+![rain2](https://user-images.githubusercontent.com/43828905/116791850-4f3ef900-aabd-11eb-9334-26bcf265d6df.png)
 
 
 ## Tetris
