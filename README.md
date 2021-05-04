@@ -1,6 +1,10 @@
 # JS
 Projects made to improve my Web Development skills.
 
+#### Technologies:
+* HTML5
+* CSS3
+* JavaScript ES6
 
 
 ## Pixels effects
